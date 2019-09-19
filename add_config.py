@@ -55,5 +55,6 @@ env.Replace(SRC_FILTER=
         src_filter
 )
 env.Append(CPPPATH=
-        [Dir(incpath).srcnode().abspath]
+        [Dir(incpath).srcnode().abspath,
+         Dir(os.path.join("src", "CMSIS_RTOS")).srcnode().abspath]
 )
