@@ -18,7 +18,7 @@
     "platforms": "ststm32",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mincrmatt12/stm32-platformio-freertos.git"
+        "url": "https://github.com/mincrmatt12/stm32cube-platformio-freertos.git"
     },
     "version": "2.0"
 }
