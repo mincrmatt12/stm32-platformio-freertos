@@ -1,7 +1,7 @@
 # stm32cube-platformio-freertos
 This library links in the version of FreeRTOS shipped with the STM32Cube framework.
 
-Configuration is possible with extra options in the platformio.ini.
+Configuration is possible with extra options in the platformio.ini. These are looked up relative to the current environment.
 These are:
 
     - custom_freertos_config_location: *REQUIRED* must point to either a path containing FreeRTOSConfig.h or the file itself.
