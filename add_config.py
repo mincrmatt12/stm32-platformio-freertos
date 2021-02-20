@@ -6,12 +6,8 @@ except ImportError:
 from os.path import dirname, join, exists, isdir, basename
 Import('env')
 
-config = configparser.ConfigParser()
-config.read(env.get("PROJECT_CONFIG"))
-
-try:
-    custom_freertos_location = config.get("env:" + env.get("PIOENV"), "custom_freertos_config_location")
-except configparser.NoOptionError:
+custom_freertos_location = env.GetProjectOption("custom_freertos_config_location", None)
+if custom_freertos_location is None:
     raise ValueError("Please set custom_freertos_config_location in your platformio.ini to the location of a FreeRTOSConfig.h header file -- relative to the location of platformio.ini")
 
 if not isdir(custom_freertos_location):
@@ -34,19 +30,19 @@ foldername = {
     "cortex-m7": "ARM_CM7"
 }[cpu_name]
 
-try:
-    heap_impl = config.get("env:" + env.get("PIOENV"), "custom_freertos_heap_impl")
-except configparser.NoOptionError:
-    heap_impl = "heap_4.c"
+heap_impl = env.GetProjectOption("custom_freertos_heap_impl", "heap_4.c")
 
-try:
+extra_features = env.GetProjectOption("custom_freertos_features", None)
+if extra_features is not None:
     extra_features = config.get("env:" + env.get("PIOENV"), "custom_freertos_features").split(",")
     extra_features = [x.strip() for x in extra_features]
-except configparser.NoOptionError:
+else:
     extra_features = []
 
+cmsis_impl = env.GetProjectOption("custom_freertos_cmsis_impl", "CMSIS_RTOS")
+
 incpath = join("src", "portable", "GCC", foldername)
-src_filter = ["+<*>", "-<portable/*>", "+<portable/MemMang/{}>".format(heap_impl), "+<portable/GCC/{}/*.c>".format(foldername)]
+src_filter = ["+<*>", "-<CMSIS_RTOS*>", "-<portable/*>", "+<portable/MemMang/{}>".format(heap_impl), "+<portable/GCC/{}/*.c>".format(foldername), "+<{}/*.c>".format(cmsis_impl)]
 src_filter.append("-<croutine.c>" if "coroutines" not in extra_features else "+<croutine.c>")
 src_filter.append("-<timers.c>" if "timers" not in extra_features else "+<timers.c>")
 src_filter.append("-<event_groups.c>" if "event_groups" not in extra_features else "+<event_groups.c>")
@@ -56,5 +52,5 @@ env.Replace(SRC_FILTER=
 )
 env.Append(CPPPATH=
         [Dir(incpath).srcnode().abspath,
-         Dir(join("src", "CMSIS_RTOS")).srcnode().abspath]
+         Dir(join("src", cmsis_impl)).srcnode().abspath]
 )

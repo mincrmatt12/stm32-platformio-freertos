@@ -28,7 +28,7 @@
 ### 29-Mars-2019 ###
 =========================
   + cmsis_os.c : Fix bug in osPoolAlloc(): memory blocks can't be reused after being free'd
-  + Source/CMSIS_RTOS_V2/cmsis_os, Source/CMSIS_RTOS_V2/cmsis_os1.c, Source/CMSIS_RTOS_V2/cmsis_os2.c, Source/CMSIS_RTOS_V2/cmsis_os2.h: restore original Apache license terms
+  + Source/CMSIS_RTOS_V2/cmsis_os, Source/CMSIS_RTOS_V2/cmsis_os1.c, Source/CMSIS_RTOS_V2/cmsis_os2.c, Source/CMSIS_RTOS_V1/cmsis_os2.h: restore original Apache license terms
   + st_readme.txt: update license terms to BSD-3-Clause
 
 

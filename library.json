@@ -11,14 +11,14 @@
     "build": {
         "extraScript": "add_config.py"
     },
-    "description": "This library links in the version of FreeRTOS shipped with the STM32Cube framework.\n\nConfiguration is possible with extra options in the platformio.ini.\nThese are:\n\n    - custom_freertos_config_location: *REQUIRED* must point to either a path containing FreeRTOSConfig.h or the file itself.\n    - custom_freertos_heap_impl: *OPTIONAL, defaults to heap_4.c* heap implementation file to use (see FreeRTOS docs)\n    - custom_freertos_features: *OPTIONAL*, comma separated list of optional files to build, any of [\"coroutines\", \"timers\", \"event_groups\", \"stream_buffers\"]\n\nThere is currently no support for the MPU.\nIf you use the RTOS heap you may want to disable allocation of a heap in the link script.\nA good starting point for the FreeRTOSConfig.h is in the include directory, and can be used a default by using\n\n```\n#include \"FreeRTOSConfig_template.h\"\n```\n\nas your FreeRTOSConfig.h, or by simply copying its contents which is the preferred method if you plan to modify values in it.\n",
+    "description": "This library links in the version of FreeRTOS shipped with the STM32Cube framework. ",
     "frameworks": "stm32cube",
     "keywords": "rtos",
     "name": "STM32Cube Middleware-FreeRTOS",
     "platforms": "ststm32",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mincrmatt12/stm32cube-platformio-freertos.git"
+        "url": "https://github.com/mincrmatt12/stm32-platformio-freertos.git"
     },
-    "version": "2.0"
+    "version": "10.0.1+f2-1.9.2"
 }
