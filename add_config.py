@@ -34,8 +34,7 @@ heap_impl = env.GetProjectOption("custom_freertos_heap_impl", "heap_4.c")
 
 extra_features = env.GetProjectOption("custom_freertos_features", None)
 if extra_features is not None:
-    extra_features = config.get("env:" + env.get("PIOENV"), "custom_freertos_features").split(",")
-    extra_features = [x.strip() for x in extra_features]
+    extra_features = [x.strip() for x in extra_features.split(",")]
 else:
     extra_features = []
 
