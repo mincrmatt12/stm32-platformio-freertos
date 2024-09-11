@@ -26,6 +26,7 @@ cpu_name = env.BoardConfig().get("build.cpu")
 foldername = {
     "cortex-m3": "ARM_CM3",
     "cortex-m0": "ARM_CM0",
+    "cortex-m0plus": "ARM_CM0",
     "cortex-m4": "ARM_CM4F",
     "cortex-m7": "ARM_CM7/r0p1"
 }[cpu_name]
